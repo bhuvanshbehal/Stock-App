@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -35,7 +36,11 @@ function StockList() {
       <tbody>
         {stocks.map((stock) => (
           <tr key={stock.symbol}>
-            <td>{stock.symbol}</td>
+            <td>
+                <Link to={`/stocks/${stock.symbol}`}>
+                {stock.symbol}
+                </Link>
+            </td>
             <td>{stock.name}</td>
             <td>{stock.currency}</td>
             <td>{stock.exchanges.join(", ")}</td>
