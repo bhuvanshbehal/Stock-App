@@ -1,18 +1,22 @@
-const express = require('express');
-const cors = require('cors');
-require('dotenv').config();
+const express = require("express");
+const cors = require("cors");
+require("dotenv").config();
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-const stockRoutes = require('./routes/stocks');
-app.use('/api/stocks', stockRoutes);
+const stockRoutes = require("./routes/stocks");
 
-app.get('/', (req, res) => {
-  res.send('Stock App Backend Running!');
+const priceRoutes = require("./routes/prices.routes");
+
+app.get("/", (req, res) => {
+  res.send("Stock App Backend Running!");
 });
+
+app.use("/api/stocks", stockRoutes);
+app.use("/api", priceRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
